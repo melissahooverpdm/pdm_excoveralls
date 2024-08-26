@@ -5,6 +5,7 @@ defmodule ExCoveralls.Html do
 
   alias ExCoveralls.Html.View
   alias ExCoveralls.Stats
+  alias ExCoveralls.ConfServer
 
   @file_name "excoveralls.html"
 
