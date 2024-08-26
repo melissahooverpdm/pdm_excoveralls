@@ -71,7 +71,7 @@ defmodule ExCoveralls.Html do
     Stats.ensure_minimum_coverage(stats)
   end
 
-  defp generate_report(map, output_dir, ownership, team_percentage) do
+  defp generate_report(map, output_dir, ownership \\ "", team_percentage \\ "") do
     IO.puts("Generating report...")
 
     filter_full_covered =
