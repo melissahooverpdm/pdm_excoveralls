@@ -5,7 +5,6 @@ defmodule ExCoveralls.Html do
 
   alias ExCoveralls.Html.View
   alias ExCoveralls.Stats
-  alias ExCoveralls.ConfServer
 
   @file_name "excoveralls.html"
 
@@ -29,15 +28,12 @@ defmodule ExCoveralls.Html do
   def execute(stats, options \\ []) do
     ExCoveralls.Local.print_summary(stats)
 
-    options = ConfServer.get()
-
     type =  options[:type]
 
     if is_nil(type) do
       Stats.source(stats, options[:filter]) |> generate_report(options[:output_dir])
     else
       type =  options[:type]
-      team_percentages_json_path =  options[:team_percentages_json_path]
 
       with {:ok, detailed_coverage_json} <- read_json_file(coverage_json_path(type)),
            {:ok, team_percentages_json} <- read_json_file(team_percentages(type)) do
