@@ -33,6 +33,14 @@ h2 {
   border-bottom: 1px solid #eee;
 }
 
+h3 {
+  width: 80%;
+  margin-bottom: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #eee;
+}
+
 a {
   color: #8A6343;
   font-weight: bold;

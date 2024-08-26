@@ -1,3 +1,13 @@
+0.18.3
+------
+#### Enhancements
+- Added functionality for html by teams
+
+0.18.3
+------
+#### Enhancements
+- Custom functionality for html by team ownership
+
 0.18.2
 ------
 #### Enhancements

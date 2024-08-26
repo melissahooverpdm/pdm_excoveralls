@@ -8,7 +8,8 @@
   </head>
   <body>
     <div id='coverage'>
-      <h1 id='overview'>Coverage</h1>
+      <h1 id='overview'><%=@cov.ownership %> Coverage</h1>
+      <h3><%=@cov.team_percentage %> %</h3>
       <div id="menu">
         <li><a href='#overview'>overview</a></li>
         <%= for file <- @cov.files do %>

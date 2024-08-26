@@ -48,14 +48,15 @@ defmodule ExCoveralls do
         Cover.import(options[:import_cover])
       end
 
+
       execute(options, compile_path, opts)
     end
   end
 
   def execute(options, compile_path, opts) do
-    stats = 
-      Cover.modules() |> 
-      Stats.report() |> 
+    stats =
+      Cover.modules() |>
+      Stats.report() |>
       Enum.map(&Enum.into(&1, %{}))
 
     if options[:umbrella] do
@@ -88,7 +89,7 @@ defmodule ExCoveralls do
     {sub_app_name, _sub_app_path} =
       ExCoveralls.SubApps.find(options[:sub_apps], compile_path)
 
-    Stats.append_sub_app_name(stats, sub_app_name, options[:apps_path]) |> 
+    Stats.append_sub_app_name(stats, sub_app_name, options[:apps_path]) |>
       Stats.update_paths(options) |>
       Enum.each(fn(stat) -> StatServer.add(stat) end)
   end
@@ -141,7 +142,7 @@ defmodule ExCoveralls do
   def analyze(stats, @type_xml, options) do
     Xml.execute(stats, options)
   end
-  
+
   def analyze(stats, @type_cobertura, options) do
     Cobertura.execute(stats, options)
   end
