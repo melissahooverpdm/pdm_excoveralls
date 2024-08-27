@@ -28,13 +28,12 @@ defmodule ExCoveralls.Html do
   def execute(stats, options \\ []) do
     ExCoveralls.Local.print_summary(stats)
 
-    type =  options[:type]
+    type = Keyword.get(options, :type)
 
     if is_nil(type) do
       Stats.source(stats, options[:filter]) |> generate_report(options[:output_dir])
     else
-      type =  options[:type]
-
+      type = Keyword.get(options, :only, "unit")
       with {:ok, detailed_coverage_json} <- read_json_file(coverage_json_path(type)),
            {:ok, team_percentages_json} <- read_json_file(team_percentages(type)) do
           Enum.each(detailed_coverage_json, fn %{"ownership" => ownership, "test_coverage" => test_coverage} ->

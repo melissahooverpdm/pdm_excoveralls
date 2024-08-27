@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Coveralls do
         message: "Please specify 'test_coverage: [tool: ExCoveralls]' in the 'project' section of mix.exs"
     end
 
-    switches = [filter: :string, umbrella: :boolean, verbose: :boolean, pro: :boolean, parallel: :boolean, sort: :string, output_dir: :string, subdir: :string, rootdir: :string, flagname: :string, import_cover: :string]
+    switches = [filter: :string, umbrella: :boolean, verbose: :boolean, pro: :boolean, parallel: :boolean, sort: :string, output_dir: :string, subdir: :string, rootdir: :string, flagname: :string, import_cover: :string, test_type: :string]
     aliases = [f: :filter, u: :umbrella, v: :verbose, o: :output_dir]
     {args, common_options} = parse_common_options(args, switches: switches, aliases: aliases)
     all_options = options ++ common_options
@@ -138,7 +138,7 @@ defmodule Mix.Tasks.Coveralls do
       Mix.Tasks.Coveralls.do_run(args, [ type: "xml" ])
     end
   end
-  
+
   defmodule Cobertura do
     @moduledoc """
     Provides an entry point for outputting coveralls information
@@ -325,7 +325,7 @@ defmodule Mix.Tasks.Coveralls do
       end
     end
   end
-  
+
   defmodule Multiple do
     @moduledoc """
     Provides an entry point for executing multiple coveralls
@@ -340,13 +340,13 @@ defmodule Mix.Tasks.Coveralls do
       {parsed, _, _} = OptionParser.parse(args, strict: [type: :keep])
 
       args = remove_type_args(args)
-      
+
       case Keyword.get_values(parsed, :type) do
         [] -> raise ExCoveralls.InvalidOptionError, message: "type argument is required"
         types -> Mix.Tasks.Coveralls.do_run(args, type: types)
       end
     end
-    
+
     defp remove_type_args(args) do
       {res, _} =
         Enum.reduce(args, {[], nil}, fn entry, {buffer, acc} ->
@@ -356,7 +356,7 @@ defmodule Mix.Tasks.Coveralls do
             {el, _} -> {[el | buffer], nil}
           end
         end)
-        
+
         Enum.reverse(res)
     end
   end

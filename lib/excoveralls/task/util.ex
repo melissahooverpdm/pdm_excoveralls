@@ -36,7 +36,11 @@ Usage: mix coveralls.detail [--filter file-name-pattern]
 
 Usage: mix coveralls.html
   Used to display coverage information at the source-code level formatted as an HTML page.
-  
+
+<Options>
+  --test-type         Subdirectories to create for team coverage, if necessary
+                      e.g. 'mix coveralls.html --test-type integration'
+
 Usage: mix coveralls.cobertura
   Used to display coverage information at the source-code level formatted as an XML cobertura file.
 
@@ -63,7 +67,7 @@ Usage: mix coveralls.post <Options>
 
 Usage: mix coveralls.multiple
   Used to perform multiple coveralls task at once without need of re-running tests.
-  
+
   <Options>
     --type              Coveralls task to execute (can be given multiple times)
                         e.g. 'mix coveralls.multiple --type html --type json'
